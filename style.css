@@ -1,13 +1,48 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
 .episode {
   border: 1px solid #ccc;
   padding: 10px;
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
 }
-
+.episode h2 {
+  height: 55px;
+  text-align: center;
+}
 .episode img {
   max-width: 100%;
 }
+.link {
+  margin-top: auto;
+}
+select {
+  width: 130px;
+}
 
-.episode p {
-  margin: 5px 0;
+#sort {
+  margin: 50px 10px 40px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  border-bottom: 2px solid black;
+}
+
+#root {
+  margin: 0px 10px 20px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  gap: 20px;
+}
+
+#backBtn {
+  position: absolute;
+  top: 100px;
 }
