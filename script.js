@@ -77,8 +77,8 @@ backBtn.addEventListener("click", () => {
 });
 
 function renderSelected() {
+  document.getElementById("q").value = "";
   if (select.value === "default") {
-    document.getElementById("q").value = "";
     render(allEpisodes);
     backBtn.remove();
   } else {
