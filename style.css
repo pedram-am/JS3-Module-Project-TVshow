@@ -3,7 +3,7 @@
   padding: 0px;
 }
 .episode {
-  border: 1px solid #ccc;
+  border: 1px solid red;
   padding: 10px;
   display: flex;
   flex-direction: column;
