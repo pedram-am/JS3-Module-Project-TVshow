@@ -6,9 +6,8 @@ async function fetchData(showId) {
     .then((response) => response.json())
     .then((data) => {
       allEpisodes = data;
-      render(allEpisodes);
-      generateEpisodeOptions(allEpisodes);
-      return data;
+      render(data);
+      generateEpisodeOptions(data);
     });
 }
 
@@ -16,7 +15,7 @@ function fetchShows() {
   fetch(`https://api.tvmaze.com/shows`)
     .then((response) => response.json())
     .then((data) => {
-      data = data.sort((a, b) => {
+      data.sort((a, b) => {
         if (a.name.toLowerCase() > b.name.toLowerCase()) {
           return 1;
         } else if (a.name.toLowerCase() < b.name.toLowerCase()) {
@@ -72,14 +71,14 @@ function render(episodeList) {
   document.getElementById("countOfEpisodes").innerText = allEpisodes.length;
 }
 
-function generateEpisodeOptions(allEpisodes) {
+function generateEpisodeOptions(episodes) {
   const select = document.getElementById("select");
   select.innerHTML = "";
   const optionD = document.createElement("option");
   optionD.setAttribute("value", "default");
   optionD.innerText = "All episodes";
   select.append(optionD);
-  allEpisodes.forEach((episode) => {
+  episodes.forEach((episode) => {
     const episodeCode = `S${episode.season.toString().padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}`;
     const option = document.createElement("option");
     option.setAttribute("value", episode.id);
@@ -93,11 +92,21 @@ const searchInput = document.getElementById("q");
 searchInput.addEventListener("keyup", () => {
   document.getElementById("select").value = "default";
   const inputValue = searchInput.value.toLowerCase();
-  const filteredEpisodes = allEpisodes.filter(
-    (episode) => episode.name.toLowerCase().includes(inputValue) || episode.summary.toLowerCase().includes(inputValue)
-  );
-  render(filteredEpisodes);
-  document.getElementById("countOfEpisodes").innerText = filteredEpisodes.length;
+
+  if (searchInput.value === "") {
+    render(allEpisodes);
+  } else if (searchInput.value != "") {
+    let filteredEpisodes = allEpisodes.filter((episode) =>
+      episode.name
+        ? episode.name.toLowerCase().includes(inputValue)
+        : false || episode.summary
+        ? episode.summary.toLowerCase().includes(inputValue)
+        : false
+    );
+    render(filteredEpisodes);
+
+    document.getElementById("countOfEpisodes").innerText = filteredEpisodes.length;
+  }
 });
 
 const select = document.getElementById("select");
