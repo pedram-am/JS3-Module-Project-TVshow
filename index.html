@@ -10,18 +10,24 @@
 
   <body>
     <div id="sort">
+      <label for="selectShow"
+        >Choose a show:
+        <select name="selectShow" id="selectShow">
+          <option value="default">All Shows</option>
+        </select>
+      </label>
       <label for="selectEpisode"
         >Choose an episode:
-        <select name="selectEpisode" id="select"></select>
+        <select name="selectEpisode" id="select">
+          <option value="default">All Episodes</option>
+        </select>
       </label>
       <label for="q" id="search"
         >Search a keyword:
         <input type="search" id="q" name="q" placeholder="Search term" />
       </label>
-      <p>
-        Displaying <span id="countOfEpisodes"></span>/<span
-          id="countOfAllEpisodes"
-        ></span>
+      <p id="displayText">
+        Displaying <span id="countOfEpisodes"></span>/<span id="countOfAllEpisodes"></span>
         episodes
       </p>
     </div>
