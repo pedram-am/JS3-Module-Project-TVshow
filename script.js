@@ -7,7 +7,8 @@ async function fetchData(showId) {
     .then((data) => {
       allEpisodes = data;
       render(allEpisodes);
-      generateOpt(allEpisodes);
+      generateEpisodeOptions(allEpisodes);
+      return data;
     });
 }
 
@@ -71,7 +72,7 @@ function render(episodeList) {
   document.getElementById("countOfEpisodes").innerText = allEpisodes.length;
 }
 
-function generateOpt(allEpisodes) {
+function generateEpisodeOptions(allEpisodes) {
   const select = document.getElementById("select");
   select.innerHTML = "";
   const optionD = document.createElement("option");
